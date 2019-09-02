@@ -4,7 +4,6 @@ from matplotlib import rcParams
 from matplotlib import pyplot as plt
 from math import cos, pi, e
 import numpy as np
-import heapq
 
 l_time = 1
 fbps = 254 #cycle_1
@@ -33,11 +32,3 @@ while(q < 0.2) :
 
 plt.plot(x, )
 plt.show()
-
-res = heapq.nlargest(2, x)
-print(x.index(res[1]))
-print(x.index(max(x)))
-
-
-
-
