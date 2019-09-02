@@ -2,37 +2,34 @@
 
 from matplotlib import rcParams
 from matplotlib import pyplot as plt
-from math import sin, cos, pi, e
+from math import cos, pi, e
 import numpy as np
 
-l_time = 10000
-bps = 132 #cycle
+l_time = 1
+bps = 254 #cycle
 q = 0
 x = []
-y = []
 
-rcParams['figure.figsize']=(12, 6)
+rcParams['figure.figsize']=(6, 3)
 
-cycle = [0.0001*i for i in range(0,100*l_time+1)]
+cycle = [0.001*i for i in range(0,100*l_time+1)]
+gt = [cos(b*pi*bps*2) for b in cycle] #g(t)
+gt = np.array(gt)
+plt.plot(cycle, gt)
+plt.show()
 
-#gt = [cos(b*pi*bps*2) for b in cycle] #g(t)
 #fx = [e**(2*1j*pi*t) for t in time] #f(x)
 
-while(q < 0.1) :
+while(q < 0.2) :
     q += 0.0001
-    time = [q*i for i in range(0, 100000)]
-    fg = [e**(2*1j*pi*t) * (1 + cos(b*pi*bps*2)) for t, b in zip(time, cycle)] #f(x)g(x)
+    time = [q*i for i in range(0, 10000)]
+    cycle = [0.0001*i for i in range(0,100*l_time+1)]
+    fg = [e**(2*1j*pi*t) * (cos(b*pi*bps*2)) for t, b in zip(time, cycle)] #f(x)g(x)
     fg = np.array(fg)
     p1 = sum(fg.real) / len(fg)
-    p2 = sum(fg.imag) / len(fg)
     x.append(p1)
-    y.append(p2)
 
-#fx = np.array(fx)
-#gt = np.array(gt)
-
-#plt.plot(cycle, gt)
-#plt.show()
-#plt.plot(fx.real, fx.imag)
-#plt.plot(fg.real, fg.imag)
 plt.plot(x, )
+plt.show()
+
+print(x.index(max(x)))
